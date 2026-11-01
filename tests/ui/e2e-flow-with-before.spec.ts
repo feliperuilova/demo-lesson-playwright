@@ -31,7 +31,6 @@ test('login with correct credentials and verify order creation page', async ({})
   await expect(orderCreationPage.phoneInput).toBeVisible()
   await expect(orderCreationPage.commentInput).toBeVisible()
   await expect(orderCreationPage.createOrderButton).toBeVisible()
-
 })
 
 test('login and create order', async ({}) => {
@@ -41,5 +40,5 @@ test('login and create order', async ({}) => {
   await orderCreationPage.commentInput.fill('Testing')
   await orderCreationPage.createOrderButton.click()
 
-  await expect (orderCreationPage.successmessage).toBeVisible()
+  await expect(orderCreationPage.successmessage).toBeVisible()
 })
