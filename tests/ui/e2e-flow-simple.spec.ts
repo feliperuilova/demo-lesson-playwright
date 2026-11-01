@@ -11,7 +11,7 @@ test('signIn button disabled when password less than 8 characters', async ({ pag
   await expect(loginPage.signInButton).toBeDisabled()
 })
 
-test.skip('signIn with invalid credentials, should lead to error', async ({ page }) => {
+test('signIn with invalid credentials, should lead to error', async ({ page }) => {
   const loginPage = new LoginPage(page)
   await loginPage.open()
   await loginPage.usernameField.fill(faker.lorem.word(2))
