@@ -64,7 +64,7 @@ test('log out from order page', async ({}) => {
 
   //check
   await expect(loginPage.signInButton).toBeVisible()
-  await expect(orderCreationPage.logoutButton).toBeVisible()
+  await expect(orderCreationPage.logoutButton).toBeHidden()
 })
 
 test('order not found page', async ({}) => {
