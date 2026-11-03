@@ -18,7 +18,6 @@ export class OrderPage {
   readonly orderNameDetails: Locator
   readonly orderStatusOpen: Locator
 
-
   constructor(page: Page) {
     this.page = page
     this.statusButton = page.getByTestId('openStatusPopup-button')
@@ -38,5 +37,4 @@ export class OrderPage {
     this.orderNameDetails = page.getByTestId('order-item-0')
     this.orderStatusOpen = page.getByTestId('status-item-0')
   }
-
 }

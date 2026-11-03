@@ -51,7 +51,7 @@ test('check error on order creation', async ({}) => {
 
   //check
   await expect(orderCreationPage.createOrderButton).toBeDisabled()
-//error check
+  //error check
   await expect(orderCreationPage.customerNameError).toBeVisible()
   await expect(orderCreationPage.phoneError).toBeVisible()
 })
@@ -71,7 +71,7 @@ test('order not found page', async ({}) => {
   const orderCreationPage = await loginPage.signIn(USERNAME, PASSWORD)
 
   await orderCreationPage.statusButton.click()
-  await orderCreationPage.searchOrderInput .fill('123986')
+  await orderCreationPage.searchOrderInput.fill('123986')
   await orderCreationPage.searchOrderButton.click()
 
   //check
