@@ -26,8 +26,8 @@ jobs:
             echo "Running Prettier to check for formatting issues..."
             npm run check
 
-      - - name: Install Playwright Browsers
-          run: npx playwright install
+      - name: Install Playwright Browsers
+        run: npx playwright install
 
       - name: Run Playwright tests
         env:
