@@ -8,7 +8,16 @@ export class OrderPage {
   readonly commentInput: Locator
   readonly createOrderButton: Locator
   readonly successmessage: Locator
-  // add more locators here
+  readonly customerNameError: Locator
+  readonly phoneError: Locator
+  readonly logoutButton: Locator
+  readonly searchOrderButton: Locator
+  readonly searchOrderInput: Locator
+  readonly orderNotFoundText: Locator
+  readonly orderNotFoundImage: Locator
+  readonly orderNameDetails: Locator
+  readonly orderStatusOpen: Locator
+
 
   constructor(page: Page) {
     this.page = page
@@ -18,5 +27,16 @@ export class OrderPage {
     this.commentInput = page.getByTestId('comment-input')
     this.createOrderButton = page.getByTestId('createOrder-button')
     this.successmessage = page.getByTestId('orderSuccessfullyCreated-popup')
+    this.customerNameError = page.getByTestId('username-input-error')
+    this.phoneError = page.getByTestId('phone-input-error')
+    this.logoutButton = page.getByTestId('logout-button')
+    this.searchOrderButton = page.getByTestId('searchOrder-submitButton')
+    this.searchOrderInput = page.getByTestId('searchOrder-input')
+    this.orderNotFoundText = page.getByTestId('orderNotFound-title')
+    this.orderNotFoundImage = page.getByTestId('orderNotFound-image')
+
+    this.orderNameDetails = page.getByTestId('order-item-0')
+    this.orderStatusOpen = page.getByTestId('status-item-0')
   }
+
 }
