@@ -109,7 +109,6 @@ test('order search -> error on server side', async ({}) => {
   await orderCreationPage.statusButton.click()
   await orderCreationPage.searchOrderInput.fill('0')
   await orderCreationPage.searchOrderButton.click()
-
 })
 
 test('order creation -> mock', async ({}) => {
