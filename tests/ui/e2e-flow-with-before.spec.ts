@@ -2,6 +2,12 @@ import { test, expect } from '@playwright/test'
 import { LoginPage } from '../pages/login-page'
 import { faker } from '@faker-js/faker/locale/en'
 import { PASSWORD, USERNAME } from '../../config/env-data'
+import {
+  existingOrderMock,
+  nonExistingOrderMock,
+  orderCreationOrderMock,
+  serveErrorOrderMock,
+} from '../mock/order-mocks'
 
 let loginPage: LoginPage
 
@@ -70,8 +76,10 @@ test('log out from order page', async ({}) => {
 test('order not found page', async ({}) => {
   const orderCreationPage = await loginPage.signIn(USERNAME, PASSWORD)
 
+  await nonExistingOrderMock(orderCreationPage.page)
+
   await orderCreationPage.statusButton.click()
-  await orderCreationPage.searchOrderInput.fill('123986')
+  await orderCreationPage.searchOrderInput.fill('0')
   await orderCreationPage.searchOrderButton.click()
 
   //check
@@ -81,9 +89,11 @@ test('order not found page', async ({}) => {
 
 test('order found page', async ({}) => {
   const orderCreationPage = await loginPage.signIn(USERNAME, PASSWORD)
+  //init mock before flow started
+  await existingOrderMock(orderCreationPage.page)
 
   await orderCreationPage.statusButton.click()
-  await orderCreationPage.searchOrderInput.fill('20619')
+  await orderCreationPage.searchOrderInput.fill('0')
   await orderCreationPage.searchOrderButton.click()
 
   //check
@@ -91,4 +101,25 @@ test('order found page', async ({}) => {
   await expect(orderCreationPage.orderNameDetails).toBeVisible()
 })
 
-//20619
+test('order search -> error on server side', async ({}) => {
+  const orderCreationPage = await loginPage.signIn(USERNAME, PASSWORD)
+  //init mock before flow started
+  await serveErrorOrderMock(orderCreationPage.page)
+
+  await orderCreationPage.statusButton.click()
+  await orderCreationPage.searchOrderInput.fill('0')
+  await orderCreationPage.searchOrderButton.click()
+
+})
+
+test('order creation -> mock', async ({}) => {
+  const orderCreationPage = await loginPage.signIn(USERNAME, PASSWORD)
+  await orderCreationOrderMock(orderCreationPage.page)
+
+  await orderCreationPage.usernameInput.fill('Mark')
+  await orderCreationPage.phoneInput.fill('55667788')
+  await orderCreationPage.commentInput.fill('keep near door')
+  await orderCreationPage.createOrderButton.click()
+
+  await expect(orderCreationPage.successmessage).toBeVisible()
+})
