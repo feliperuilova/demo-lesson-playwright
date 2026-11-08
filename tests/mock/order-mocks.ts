@@ -23,8 +23,9 @@ export async function nonExistingOrderMock(page: Page) {
 
 export async function serveErrorOrderMock(page: Page) {
   await page.route('**/orders/*', async (route) => {
-    await route.fulfill({})
-    status: 500
+    await route.fulfill({
+      status: 500,
+    })
   })
 }
 
